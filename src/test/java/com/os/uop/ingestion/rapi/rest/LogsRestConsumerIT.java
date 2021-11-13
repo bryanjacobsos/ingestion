@@ -19,7 +19,9 @@ public class LogsRestConsumerIT {
 
     private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
 
-    private CountDownLatch latch = new CountDownLatch(5);
+    public static final int NUMBER_OF_RESOURCE_LOGS = 5;
+
+    private CountDownLatch latch = new CountDownLatch(NUMBER_OF_RESOURCE_LOGS);
 
     private List<ResourceLogs> resourceLogsList = new ArrayList<>();
 

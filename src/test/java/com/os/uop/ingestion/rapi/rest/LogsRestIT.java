@@ -65,6 +65,7 @@ public class LogsRestIT {
 
         System.out.println("*************************TEST OUTPUT************************************************************");
         System.out.println(resourceLogsList.size());
+        assertTrue(resourceLogsList.size() == LogsRestConsumerIT.NUMBER_OF_RESOURCE_LOGS);
         System.out.println("*************************TEST OUTPUT************************************************************");
 
 
