@@ -38,7 +38,7 @@ public class LogsRestIT {
     LogsRestConsumerIT logsRestConsumerIT;
 
     @Test
-    public void protobuf() throws InterruptedException {
+    public void shouldGet204_and_shouldGet5ResourceLogs() throws InterruptedException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
