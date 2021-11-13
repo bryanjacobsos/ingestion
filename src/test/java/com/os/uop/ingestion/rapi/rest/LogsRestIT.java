@@ -47,6 +47,8 @@ public class LogsRestIT {
 
         String expected = JsonFormat.printer().print(exportLogsServiceRequest.toBuilder());
 
+        // this is not a great test...a better test would be to implement a consumer that gets
+        // the resulting transform and asserts that its correct
         assertEquals(expected, jsonOutAgain);
     }
 }
