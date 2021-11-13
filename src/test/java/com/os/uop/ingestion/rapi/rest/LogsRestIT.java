@@ -1,9 +1,8 @@
 package com.os.uop.ingestion.rapi.rest;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
 import com.os.uop.ingestion.rapi.component.LogsDataTransformerIT;
 import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
+import io.opentelemetry.proto.logs.v1.ResourceLogs;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,10 +12,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@EmbeddedKafka(brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092"})
+@DirtiesContext
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LogsRestIT {
 
@@ -26,8 +34,11 @@ public class LogsRestIT {
     @LocalServerPort
     private int port;
 
+    @Autowired
+    LogsRestConsumerIT logsRestConsumerIT;
+
     @Test
-    public void protobuf() throws InvalidProtocolBufferException {
+    public void protobuf() throws InterruptedException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -37,18 +48,27 @@ public class LogsRestIT {
 
 
         // Sends data to server
-        ResponseEntity<ExportLogsServiceRequest> responseEntity = restTemplate.exchange("http://localhost:" + port + "/logs",
+        ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:" + port + "/logs",
                 HttpMethod.POST,
                 entity,
-                ExportLogsServiceRequest.class);
+                String.class);
 
-        // converts serialized LogsData into a String
-        String jsonOutAgain = JsonFormat.printer().print(responseEntity.getBody().toBuilder());
+        assertNull(responseEntity.getBody());
 
-        String expected = JsonFormat.printer().print(exportLogsServiceRequest.toBuilder());
+        assertTrue(responseEntity.getStatusCodeValue() == 204);
 
-        // this is not a great test...a better test would be to implement a consumer that gets
-        // the resulting transform and asserts that its correct
-        assertEquals(expected, jsonOutAgain);
+        logsRestConsumerIT.getLatch().await(10000, TimeUnit.MILLISECONDS);
+
+        assertEquals(logsRestConsumerIT.getLatch().getCount(), 0);
+
+        List<ResourceLogs> resourceLogsList = logsRestConsumerIT.getPayload();
+
+        System.out.println("*************************TEST OUTPUT************************************************************");
+        System.out.println(resourceLogsList.size());
+        System.out.println("*************************TEST OUTPUT************************************************************");
+
+
     }
+
+
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Repository
 public class ResourceLogsWrapperRepo {
@@ -30,7 +32,19 @@ public class ResourceLogsWrapperRepo {
 
             String jsonResourceLogs = JsonFormat.printer().print(resourceLogs);
 
-            kafkaTemplate.send(topic, jsonResourceLogs);
+            ListenableFuture future = kafkaTemplate.send(topic, jsonResourceLogs);
+
+            future.addCallback(new ListenableFutureCallback() {
+                @Override
+                public void onFailure(Throwable ex) {
+                    LOG.error("Unable to send message to kafka. Failed message: {}", jsonResourceLogs);
+                }
+
+                @Override
+                public void onSuccess(Object result) {
+                    // NOOP...just get it done
+                }
+            });
 
         } catch (InvalidProtocolBufferException e) {
             LOG.error("unable to convert protobuf to json calling toString on ResourceLog {}", resourceLogs);

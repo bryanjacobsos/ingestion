@@ -18,10 +18,10 @@ public class LogsRest {
     LogsDataService logsDataService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExportLogsServiceRequest> postLogs(@RequestBody ExportLogsServiceRequest exportLogsServiceRequest) {
+    public ResponseEntity postLogs(@RequestBody ExportLogsServiceRequest exportLogsServiceRequest) {
 
         logsDataService.writeLogs(exportLogsServiceRequest);
 
-        return ResponseEntity.ok(exportLogsServiceRequest);
+        return ResponseEntity.noContent().build();
     }
 }
