@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LogsTest {
+public class LogsRestIT {
 
     @Autowired
     RestTemplate restTemplate;
