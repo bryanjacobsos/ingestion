@@ -1,0 +1,173 @@
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "rl1_resource_attribute1_key",
+            "value": {
+              "stringValue": "rl1_resource_attribute1_value"
+            }
+          },
+          {
+            "key": "rl1_resource_attribute2_key",
+            "value": {
+              "stringValue": "rl1_resource_attribute2_value"
+            }
+          }
+        ]
+      },
+      "instrumentationLibraryLogs": [
+        {
+          "instrumentationLibrary": {
+            "name": "rl1_ill1_il_name",
+            "version": "test_version"
+          },
+          "logs": [
+            {
+              "timeUnixNano": "1111111111",
+              "severityNumber": "SEVERITY_NUMBER_INFO",
+              "severityText": "INFO",
+              "name": "rl1_ill1_log1_name",
+              "body": {
+                "stringValue": "rl1_ill1_log1_body"
+              },
+              "attributes": [
+                {
+                  "key": "rl1_ill1_log1_attributes1_key",
+                  "value": {
+                    "stringValue": "rl1_ill1_log1_attributes1_value"
+                  }
+                },
+                {
+                  "key": "rl1_ill1_log1_attributes1_key",
+                  "value": {
+                    "stringValue": "rl1_ill1_log1_attributes1_value"
+                  }
+                }
+              ],
+              "droppedAttributesCount": 1,
+              "flags": 1,
+              "traceId": "AQIDBAUGBwgIBwYFBAMCAQ==",
+              "spanId": "AQIDBAUGBwg="
+            },
+            {
+              "timeUnixNano": "1234567890",
+              "severityNumber": "SEVERITY_NUMBER_INFO",
+              "severityText": "INFO",
+              "name": "rl1_ill1_log_name2",
+              "body": {
+                "stringValue": "rl1_ill1_log2_body"
+              },
+              "attributes": [
+                {
+                  "key": "rl1_ill1_log2_attributes1_key",
+                  "value": {
+                    "stringValue": "rl1_ill1_log2_attributes1_value"
+                  }
+                },
+                {
+                  "key": "rl1_ill1_log2_attributes2_key",
+                  "value": {
+                    "stringValue": "rl1_ill1_log2_attributes2_value"
+                  }
+                }
+              ],
+              "droppedAttributesCount": 17,
+              "flags": 1,
+              "traceId": "AQIDBAUGBwgIBwYFBAMCAQ==",
+              "spanId": "AQIDBAUGBwg="
+            }
+          ]
+        },
+        {
+          "instrumentationLibrary": {
+            "name": "rl1_ill2_il_name",
+            "version": "test_version"
+          },
+          "logs": [
+            {
+              "timeUnixNano": "1111111111",
+              "severityNumber": "SEVERITY_NUMBER_INFO",
+              "severityText": "INFO",
+              "name": "r1_ill2_log1_name",
+              "body": {
+                "stringValue": "rl1_ill2_log1_body"
+              },
+              "attributes": [
+                {
+                  "key": "rl1_ill2_log1_attribute1_key",
+                  "value": {
+                    "stringValue": "rl1_ill2_log1_attribute1_value"
+                  }
+                },
+                {
+                  "key": "rl1_ill2_log1_attribute2_key",
+                  "value": {
+                    "stringValue": "rl1_ill2_log1_attribute2_value"
+                  }
+                }
+              ],
+              "droppedAttributesCount": 1,
+              "flags": 1,
+              "traceId": "AQIDBAUGBwgIBwYFBAMCAQ==",
+              "spanId": "AQIDBAUGBwg="
+            },
+            {
+              "timeUnixNano": "1234567890",
+              "severityNumber": "SEVERITY_NUMBER_INFO",
+              "severityText": "INFO",
+              "name": "rl1_ill2_log2_name",
+              "body": {
+                "stringValue": "rl1_ill2_log2_body"
+              },
+              "attributes": [
+                {
+                  "key": "rl1_ill2_log2_attribute1_key",
+                  "value": {
+                    "stringValue": "rl1_ill2_log2_attribute1_value"
+                  }
+                },
+                {
+                  "key": "rl1_ill2_log2_attribute2_key",
+                  "value": {
+                    "stringValue": "rl1_ill2_log2_attribute2_value"
+                  }
+                }
+              ],
+              "droppedAttributesCount": 17,
+              "flags": 1,
+              "traceId": "AQIDBAUGBwgIBwYFBAMCAQ==",
+              "spanId": "AQIDBAUGBwg="
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instrumentationLibraryLogs": [
+        {
+          "instrumentationLibrary": {
+            "name": "rl2_ill1_il_name",
+            "version": "test_version"
+          },
+          "logs": [
+            {
+              "timeUnixNano": "1111111111",
+              "severityNumber": "SEVERITY_NUMBER_INFO",
+              "severityText": "INFO",
+              "name": "rl2_ill1_log1_name",
+              "body": {
+                "stringValue": "rl2_ill1_log1_body"
+              },
+              "droppedAttributesCount": 1,
+              "flags": 1,
+              "traceId": "AQIDBAUGBwgIBwYFBAMCAQ==",
+              "spanId": "AQIDBAUGBwg="
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
