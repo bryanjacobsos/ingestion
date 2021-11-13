@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @EmbeddedKafka(brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092"})
 @DirtiesContext
-@ActiveProfiles("test")
+@ActiveProfiles("test") // this will cause the application-test.properties and application.properties to load
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ExportLogsServiceRequestRestIT {
 
