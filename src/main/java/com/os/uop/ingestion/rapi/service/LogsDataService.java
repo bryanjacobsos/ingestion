@@ -2,7 +2,7 @@ package com.os.uop.ingestion.rapi.service;
 
 import com.os.uop.ingestion.rapi.component.LogsDataTransformer;
 import com.os.uop.ingestion.rapi.model.ResourceLogsWrapper;
-import com.os.uop.ingestion.rapi.repo.ResourceLogsRepo;
+import com.os.uop.ingestion.rapi.repo.ResourceLogsWrapperRepo;
 import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,14 @@ public class LogsDataService {
     LogsDataTransformer logsDataTransformer;
 
     @Autowired
-    ResourceLogsRepo resourceLogsRepo;
+    ResourceLogsWrapperRepo resourceLogsWrapperRepo;
 
     public void writeLogs(ExportLogsServiceRequest logsData) {
 
         List<ResourceLogsWrapper> resourceLogsWrappers =
-                logsDataTransformer.transformLogsDataToResourceLogsWrapper(logsData);
+                logsDataTransformer.transformExportLogsServiceRequestToResourceLogsWrapper(logsData);
 
-        resourceLogsWrappers.forEach(resourceLogsWrapper ->
-                resourceLogsRepo.send(resourceLogsWrapper.getResourceLogs()));
+        resourceLogsWrappers.forEach(resourceLogsWrapperRepo::send);
 
     }
 

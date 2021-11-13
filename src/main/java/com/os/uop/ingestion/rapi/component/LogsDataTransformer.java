@@ -16,7 +16,7 @@ import java.util.UUID;
 @Component
 public class LogsDataTransformer {
 
-    public List<ResourceLogsWrapper> transformLogsDataToResourceLogsWrapper(ExportLogsServiceRequest exportLogsServiceRequest) {
+    public List<ResourceLogsWrapper> transformExportLogsServiceRequestToResourceLogsWrapper(ExportLogsServiceRequest exportLogsServiceRequest) {
 
         List<ResourceLogs> resourceLogsList = exportLogsServiceRequest.getResourceLogsList();
 

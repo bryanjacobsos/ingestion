@@ -25,7 +25,7 @@ public class LogsDataTransformerIT {
     public void shouldHaveFiveResourceLogsWrappers() {
 
         List<ResourceLogsWrapper> resourceLogsWrappers =
-                logsDataTransformer.transformLogsDataToResourceLogsWrapper(convertToLogsData());
+                logsDataTransformer.transformExportLogsServiceRequestToResourceLogsWrapper(convertToLogsData());
 
         assertTrue(resourceLogsWrappers.size() == 5);
     }
