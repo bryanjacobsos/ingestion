@@ -1,4 +1,4 @@
-package com.os.uop.ingestion.rapi.model;
+package com.os.uop.ingestion.rapi.rest;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LogsTest {
 
@@ -28,7 +30,10 @@ public class LogsTest {
     public void protobuf() throws InvalidProtocolBufferException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ExportLogsServiceRequest> entity = new HttpEntity<>(LogsDataTransformerIT.convertToLogsData(), headers);
+
+        ExportLogsServiceRequest exportLogsServiceRequest = LogsDataTransformerIT.convertToLogsData();
+
+        HttpEntity<ExportLogsServiceRequest> entity = new HttpEntity<>(exportLogsServiceRequest, headers);
 
 
         // Sends data to server
@@ -40,6 +45,8 @@ public class LogsTest {
         // converts serialized LogsData into a String
         String jsonOutAgain = JsonFormat.printer().print(responseEntity.getBody().toBuilder());
 
-        System.out.println(jsonOutAgain);
+        String expected = JsonFormat.printer().print(exportLogsServiceRequest.toBuilder());
+
+        assertEquals(expected, jsonOutAgain);
     }
 }
