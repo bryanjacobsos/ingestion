@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -16,10 +17,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class LogsDataTransformerIT {
+@ActiveProfiles("test")
+public class ExportLogsServiceRequestTransformerIT {
 
     @Autowired
-    LogsDataTransformer logsDataTransformer;
+    ExportLogsServiceRequestTransformer logsDataTransformer;
 
     @Test
     public void shouldHaveFiveResourceLogsWrappers() {

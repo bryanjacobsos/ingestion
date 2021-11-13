@@ -1,6 +1,6 @@
 package com.os.uop.ingestion.rapi.rest;
 
-import com.os.uop.ingestion.rapi.component.LogsDataTransformerIT;
+import com.os.uop.ingestion.rapi.component.ExportLogsServiceRequestTransformerIT;
 import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import io.opentelemetry.proto.logs.v1.ResourceLogs;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LogsRestIT {
+public class ExportLogsServiceRequestRestIT {
 
     @Autowired
     RestTemplate restTemplate;
@@ -35,14 +35,14 @@ public class LogsRestIT {
     private int port;
 
     @Autowired
-    LogsRestConsumerIT logsRestConsumerIT;
+    ExportLogsServiceRequestConsumerIT exportLogsServiceRequestConsumerIT;
 
     @Test
     public void shouldGet204_and_shouldGet5ResourceLogs() throws InterruptedException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        ExportLogsServiceRequest exportLogsServiceRequest = LogsDataTransformerIT.convertToLogsData();
+        ExportLogsServiceRequest exportLogsServiceRequest = ExportLogsServiceRequestTransformerIT.convertToLogsData();
 
         HttpEntity<ExportLogsServiceRequest> entity = new HttpEntity<>(exportLogsServiceRequest, headers);
 
@@ -57,15 +57,15 @@ public class LogsRestIT {
 
         assertTrue(responseEntity.getStatusCodeValue() == 204);
 
-        logsRestConsumerIT.getLatch().await(10000, TimeUnit.MILLISECONDS);
+        exportLogsServiceRequestConsumerIT.getLatch().await(10000, TimeUnit.MILLISECONDS);
 
-        assertEquals(logsRestConsumerIT.getLatch().getCount(), 0);
+        assertEquals(exportLogsServiceRequestConsumerIT.getLatch().getCount(), 0);
 
-        List<ResourceLogs> resourceLogsList = logsRestConsumerIT.getCollectedResourceLogs();
+        List<ResourceLogs> resourceLogsList = exportLogsServiceRequestConsumerIT.getCollectedResourceLogs();
 
         System.out.println("*************************TEST OUTPUT************************************************************");
         System.out.println(resourceLogsList.size());
-        assertTrue(resourceLogsList.size() == LogsRestConsumerIT.NUMBER_OF_RESOURCE_LOGS);
+        assertTrue(resourceLogsList.size() == ExportLogsServiceRequestConsumerIT.NUMBER_OF_RESOURCE_LOGS);
         System.out.println("*************************TEST OUTPUT************************************************************");
 
 

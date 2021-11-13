@@ -1,6 +1,6 @@
 package com.os.uop.ingestion.rapi.service;
 
-import com.os.uop.ingestion.rapi.component.LogsDataTransformer;
+import com.os.uop.ingestion.rapi.component.ExportLogsServiceRequestTransformer;
 import com.os.uop.ingestion.rapi.model.ResourceLogsWrapper;
 import com.os.uop.ingestion.rapi.repo.ResourceLogsWrapperRepo;
 import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class LogsDataService {
+public class ExportLogsServiceRequestService {
 
     @Autowired
-    LogsDataTransformer logsDataTransformer;
+    ExportLogsServiceRequestTransformer exportLogsServiceRequestTransformer;
 
     @Autowired
     ResourceLogsWrapperRepo resourceLogsWrapperRepo;
@@ -21,7 +21,7 @@ public class LogsDataService {
     public void writeLogs(ExportLogsServiceRequest logsData) {
 
         List<ResourceLogsWrapper> resourceLogsWrappers =
-                logsDataTransformer.transformExportLogsServiceRequestToResourceLogsWrapper(logsData);
+                exportLogsServiceRequestTransformer.transformExportLogsServiceRequestToResourceLogsWrapper(logsData);
 
         resourceLogsWrappers.forEach(resourceLogsWrapperRepo::send);
 

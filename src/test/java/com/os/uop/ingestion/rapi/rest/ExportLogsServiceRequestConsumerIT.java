@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class LogsRestConsumerIT {
+public class ExportLogsServiceRequestConsumerIT {
 
     private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
 
