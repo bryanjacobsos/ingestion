@@ -61,7 +61,7 @@ public class LogsRestIT {
 
         assertEquals(logsRestConsumerIT.getLatch().getCount(), 0);
 
-        List<ResourceLogs> resourceLogsList = logsRestConsumerIT.getPayload();
+        List<ResourceLogs> resourceLogsList = logsRestConsumerIT.getCollectedResourceLogs();
 
         System.out.println("*************************TEST OUTPUT************************************************************");
         System.out.println(resourceLogsList.size());

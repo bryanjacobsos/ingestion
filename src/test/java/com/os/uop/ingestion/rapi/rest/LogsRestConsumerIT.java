@@ -43,7 +43,7 @@ public class LogsRestConsumerIT {
         return latch;
     }
 
-    public List<ResourceLogs> getPayload() {
+    public List<ResourceLogs> getCollectedResourceLogs() {
         return resourceLogsList;
     }
 
