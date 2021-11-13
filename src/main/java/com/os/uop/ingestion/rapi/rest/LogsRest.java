@@ -1,7 +1,6 @@
 package com.os.uop.ingestion.rapi.rest;
 
 import com.os.uop.ingestion.rapi.service.LogsDataService;
-
 import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

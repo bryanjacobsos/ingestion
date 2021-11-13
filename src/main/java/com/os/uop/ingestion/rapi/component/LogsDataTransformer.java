@@ -5,7 +5,6 @@ import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import io.opentelemetry.proto.common.v1.InstrumentationLibrary;
 import io.opentelemetry.proto.logs.v1.InstrumentationLibraryLogs;
 import io.opentelemetry.proto.logs.v1.LogRecord;
-
 import io.opentelemetry.proto.logs.v1.ResourceLogs;
 import io.opentelemetry.proto.resource.v1.Resource;
 import org.springframework.stereotype.Component;
