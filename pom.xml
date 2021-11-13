@@ -72,7 +72,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-proto</artifactId>
+            <version>1.4.1-alpha</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,10 +1,11 @@
 package com.os.uop.ingestion.rapi.component;
 
 import com.os.uop.ingestion.rapi.model.ResourceLogsWrapper;
+import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import io.opentelemetry.proto.common.v1.InstrumentationLibrary;
 import io.opentelemetry.proto.logs.v1.InstrumentationLibraryLogs;
 import io.opentelemetry.proto.logs.v1.LogRecord;
-import io.opentelemetry.proto.logs.v1.LogsData;
+
 import io.opentelemetry.proto.logs.v1.ResourceLogs;
 import io.opentelemetry.proto.resource.v1.Resource;
 import org.springframework.stereotype.Component;
@@ -16,9 +17,9 @@ import java.util.UUID;
 @Component
 public class LogsDataTransformer {
 
-    public List<ResourceLogsWrapper> transformLogsDataToResourceLogsWrapper(LogsData logsData) {
+    public List<ResourceLogsWrapper> transformLogsDataToResourceLogsWrapper(ExportLogsServiceRequest exportLogsServiceRequest) {
 
-        List<ResourceLogs> resourceLogsList = logsData.getResourceLogsList();
+        List<ResourceLogs> resourceLogsList = exportLogsServiceRequest.getResourceLogsList();
 
         List<ResourceLogsWrapper> resourceLogsWrappers = new ArrayList<>();
 

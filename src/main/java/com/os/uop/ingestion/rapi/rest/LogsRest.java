@@ -1,7 +1,8 @@
 package com.os.uop.ingestion.rapi.rest;
 
 import com.os.uop.ingestion.rapi.service.LogsDataService;
-import io.opentelemetry.proto.logs.v1.LogsData;
+
+import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,10 @@ public class LogsRest {
     LogsDataService logsDataService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LogsData> postLogs(@RequestBody LogsData logsData) {
+    public ResponseEntity<ExportLogsServiceRequest> postLogs(@RequestBody ExportLogsServiceRequest exportLogsServiceRequest) {
 
-        logsDataService.writeLogs(logsData);
+        logsDataService.writeLogs(exportLogsServiceRequest);
 
-        return ResponseEntity.ok(logsData);
+        return ResponseEntity.ok(exportLogsServiceRequest);
     }
 }

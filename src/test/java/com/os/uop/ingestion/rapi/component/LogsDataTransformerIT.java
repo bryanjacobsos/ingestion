@@ -2,7 +2,7 @@ package com.os.uop.ingestion.rapi.component;
 
 import com.google.protobuf.util.JsonFormat;
 import com.os.uop.ingestion.rapi.model.ResourceLogsWrapper;
-import io.opentelemetry.proto.logs.v1.LogsData;
+import io.opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class LogsDataTransformerIT {
         assertTrue(resourceLogsWrappers.size() == 5);
     }
 
-    public static LogsData convertToLogsData() {
+    public static ExportLogsServiceRequest convertToLogsData() {
 
-        LogsData.Builder logsDataBuilder = LogsData.newBuilder();
+        ExportLogsServiceRequest.Builder logsDataBuilder = ExportLogsServiceRequest.newBuilder();
 
         try {
 
