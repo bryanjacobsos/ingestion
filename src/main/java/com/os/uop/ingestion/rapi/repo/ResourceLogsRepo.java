@@ -15,7 +15,7 @@ public class ResourceLogsRepo {
 
     private static final Logger LOG = LoggerFactory.getLogger(ResourceLogsRepo.class);
 
-    @Value("${kafka.topic}")
+    @Value("${spring.kafka.template.default-topic}")
     String topic;
 
     @Autowired

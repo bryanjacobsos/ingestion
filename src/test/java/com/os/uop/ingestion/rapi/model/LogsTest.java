@@ -3,6 +3,7 @@ package com.os.uop.ingestion.rapi.model;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.UnknownFieldSet;
 import com.google.protobuf.util.JsonFormat;
+
 import com.os.uop.ingestion.rapi.component.LogsDataTransformerIT;
 import io.opentelemetry.proto.common.v1.AnyValue;
 import io.opentelemetry.proto.common.v1.InstrumentationLibrary;

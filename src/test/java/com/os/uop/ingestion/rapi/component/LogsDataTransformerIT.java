@@ -22,7 +22,7 @@ public class LogsDataTransformerIT {
     LogsDataTransformer logsDataTransformer;
 
     @Test
-    public void letsseewhathappens() {
+    public void shouldHaveFiveResourceLogsWrappers() {
 
         List<ResourceLogsWrapper> resourceLogsWrappers =
                 logsDataTransformer.transformLogsDataToResourceLogsWrapper(convertToLogsData());
