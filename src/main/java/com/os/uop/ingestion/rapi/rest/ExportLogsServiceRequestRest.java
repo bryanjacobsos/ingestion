@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // This creates a piece of code that is exposed over http
-@RequestMapping(path = "/logs") // this means http://host:port/logs
+@RequestMapping(path = "/logs") // this means http://host:port/logs. This rest resources lives at the path logs
 public class ExportLogsServiceRequestRest {
 
     @Autowired // spring injects this service
