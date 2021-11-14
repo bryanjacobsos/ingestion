@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping(path = "/logs")
+@RestController // this create a piece of code that is exposed over http
+@RequestMapping(path = "/logs") // this means http://host:port/logs
 public class ExportLogsServiceRequestRest {
 
-    @Autowired
+    @Autowired // spring injects this service
     ExportLogsServiceRequestService exportLogsServiceRequestService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) // means the http method is POST and accepts JSON
     public ResponseEntity postLogs(@RequestBody ExportLogsServiceRequest exportLogsServiceRequest) {
 
         exportLogsServiceRequestService.writeLogs(exportLogsServiceRequest);
