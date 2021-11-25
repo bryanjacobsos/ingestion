@@ -14,6 +14,7 @@ public class App {
     /**
      * Starts the REST API listening on the configured port in the application.properties or
      * overridden on the commandline
+     *
      * @param args
      */
     public static void main(String[] args) {

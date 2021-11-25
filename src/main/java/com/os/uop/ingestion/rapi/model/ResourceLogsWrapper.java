@@ -27,6 +27,7 @@ public class ResourceLogsWrapper {
         this.uuid = uuid;
 
     }
+
     public String getUuidAsString() {
         return this.uuid.toString();
     }

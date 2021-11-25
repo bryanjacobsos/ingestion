@@ -37,6 +37,7 @@ public class ResourceLogsWrapperRepo {
             future.addCallback(new ListenableFutureCallback() {
                 @Override
                 public void onFailure(Throwable ex) {
+                    // TODO requiers ExceptionMessage handling
                     LOG.error("Unable to send message to kafka. Failed message: {}", jsonResourceLogs);
                 }
 
